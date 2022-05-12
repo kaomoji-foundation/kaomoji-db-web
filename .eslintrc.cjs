@@ -12,7 +12,8 @@ module.exports = {
         "indent":["error",4],
         "max-len": ["error",{"code": 100}],
         "no-shadow": ["error",{"hoist": "never"}],
-        "camelcase": "off"
+        "camelcase": "off",
+        "no-undef": 0
     },
     "env": {
         "vue/setup-compiler-macros": true
