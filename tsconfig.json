@@ -1,14 +1,17 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.vite-config.json"
+    "extends": "@vue/tsconfig/tsconfig.web.json",
+    "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
-  ]
+
+    "references": [
+        {
+            "path": "./tsconfig.vite-config.json"
+        }
+    ]
 }
+
