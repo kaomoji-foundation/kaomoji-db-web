@@ -1,3 +1,7 @@
+const fonts = require('./src/components/styles/tw-fonts-component');
+const kaomojiCard = require('./src/components/styles/tw-kaomoji-card-component');
+const categories = require('./src/components/styles/tw-dropdown-component');
+
 module.exports = {
     content: [
         "./index.html",
@@ -56,5 +60,9 @@ module.exports = {
     variants: {
         fontSize: ['responsive', 'hover', 'group-hover'],
     },
-    plugins: [],
+    plugins: [
+        fonts,
+        kaomojiCard,
+        categories
+    ],
 }
