@@ -1,3 +1,7 @@
+<script setup lang="ts">
+let open = false
+</script>
+
 <template>
     <div id="mobile-menu-collapse" class="flex items-center justify-center md:hidden z-50 mr-3">
         <button
@@ -24,7 +28,7 @@
     <div
         id="mobile-menu"
         class="flex md:hidden bg-gray-900 bg-opacity-80 m-0 p-0 justify-between flex-col items-center w-screen h-screen absolute top-0 left-0 right-0 bottom-0 z-40 transition-all duration-400"
-        :class="open ? '' : 'hidden'"
+        v-if="open"
     >
         <div
             id="mobile-search-bar"
