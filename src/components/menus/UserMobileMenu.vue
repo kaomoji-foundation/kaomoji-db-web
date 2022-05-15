@@ -1,34 +1,37 @@
 <script setup lang="ts">
-let open = false
+import { reactive } from 'vue'
+
+const state = reactive({ open: false })
+
 </script>
 
 <template>
     <div id="mobile-menu-collapse" class="flex items-center justify-center md:hidden z-50 mr-3">
         <button
             class="text-gray-100 w-12 h-12 bg-slate-900 rounded-md flex flex-col items-center justify-center"
-            @click="open = !open"
+            @click="state.open = !state.open"
         >
             <span
                 aria-hidden="true"
                 class="h-[0.150rem] w-6 bg-current transition duration-500 ease-in-out rounded-full p-0 m-0"
-                :class="{ 'rotate-45': open, ' translate-y-[0.525rem]': open }"
+                :class="{ 'rotate-45': state.open, ' translate-y-[0.525rem]': state.open }"
             ></span>
             <span
                 aria-hidden="true"
                 class="h-[0.150rem] w-6 bg-current transition duration-500 ease-in-out rounded-full p-0 m-0 my-1.5"
-                :class="{ '-rotate-45': open }"
+                :class="{ '-rotate-45': state.open }"
             ></span>
             <span
                 aria-hidden="true"
                 class="h-[0.150rem] w-6 bg-current transition duration-500 ease-in-out rounded-full p-0 m-0"
-                :class="{ '-rotate-45': open, ' -translate-y-[0.525rem]': open }"
+                :class="{ '-rotate-45': state.open, ' -translate-y-[0.525rem]': state.open }"
             ></span>
         </button>
     </div>
     <div
         id="mobile-menu"
         class="flex md:hidden bg-gray-900 bg-opacity-80 m-0 p-0 justify-between flex-col items-center w-screen h-screen absolute top-0 left-0 right-0 bottom-0 z-40 transition-all duration-400"
-        v-if="open"
+        :class="{ hidden: !state.open }"
     >
         <div
             id="mobile-search-bar"
