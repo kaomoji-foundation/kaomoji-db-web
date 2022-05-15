@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HomeTopBar from '../components/HomeTopBar.vue'
-import ListsSideBar from '../components/CategoriesAndListsSideBar.vue'
+import ListsSideBar from '../components/menus/CategoriesAndListsSideBar.vue'
 import KaomojisExplorer from '../components/KaomojisExplorer.vue'
 import PageFooter from '../components/PageFooter.vue'
 import type { kaomoji } from '@/types/kaomoji';
