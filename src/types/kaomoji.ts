@@ -1,7 +1,7 @@
-export class kaomoji {
-    id: string | undefined;
-    string: string | undefined;
-    description: string | undefined;
-    categories: Array<string> | undefined;
-}
+export type kaomoji = {
+    id: string;
+    string: string;
+    description: string;
+    categories: Array<string>;
+};
 

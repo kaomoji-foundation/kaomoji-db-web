@@ -3,19 +3,11 @@ import HomeTopBar from '../components/HomeTopBar.vue'
 import ListsSideBar from '../components/menus/CategoriesAndListsSideBar.vue'
 import KaomojisExplorer from '../components/KaomojisExplorer.vue'
 import PageFooter from '../components/PageFooter.vue'
-import type { kaomoji } from '@/types/kaomoji';
+import { kaomojiStore } from '@/stores/kaomojis';
 
-const kaomojis: Array<kaomoji> = [
-    {
-        id: "627cfffde881bb799fc303f5",
-        string:"(╮°-°)╮┳━━┳ ( ╯°□°)╯ ┻━━┻",
-        description:"",
-        categories: [
-            "flip the table",
-            "mad",
-        ],
-    },
-]
+let kaoStore = kaomojiStore()
+
+kaoStore.loadChunks(5)
 
 </script> 
 
@@ -23,7 +15,7 @@ const kaomojis: Array<kaomoji> = [
     <body class="bg-gray-800 min-h-screen">
         <HomeTopBar></HomeTopBar>
         <ListsSideBar></ListsSideBar>
-        <KaomojisExplorer :kaomojis="kaomojis"></KaomojisExplorer>
+        <KaomojisExplorer :kaomojis="kaoStore.kaomojis"></KaomojisExplorer>
         <PageFooter></PageFooter>
     </body>
 </template>
