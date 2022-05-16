@@ -7,7 +7,16 @@ import { kaomojiStore } from '@/stores/kaomojis';
 
 let kaoStore = kaomojiStore()
 
-kaoStore.loadChunks(5)
+kaoStore.loadChunks(1)
+
+window.onscroll = () => {
+    let top = document.documentElement.scrollTop
+    let bottomOfWindow = top + window.innerHeight === document.documentElement.offsetHeight;
+
+    if (bottomOfWindow) {
+        kaoStore.loadChunks(2)
+    }
+};
 
 </script> 
 
