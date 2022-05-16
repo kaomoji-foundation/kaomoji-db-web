@@ -32,13 +32,18 @@ class kaomojiDBSrv {
         };
 
         let res: GetKaomojisRes | undefined = undefined;
-
-        const ares = await axios.request(options);
-        if (ares.status == 200) {
-            res = ares.data;
+        try {
+            const ares = await axios.request(options);
+            if (ares.status == 200) {
+                res = ares.data;
+            }
+            return res;
+        } catch (error) {
+            setTimeout(async () => {
+                res = await kaomojiDBResource.getKaomojis(opts);
+            }, 900);
+            return res;
         }
-
-        return res;
     }
 }
 
