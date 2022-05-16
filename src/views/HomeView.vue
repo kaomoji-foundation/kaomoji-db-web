@@ -1,22 +1,8 @@
 <script setup lang="ts">
 import HomeTopBar from '../components/HomeTopBar.vue'
 import ListsSideBar from '../components/menus/CategoriesAndListsSideBar.vue'
-import KaomojisExplorer from '../components/KaomojisExplorer.vue'
+import HomeKaomojisExplorer from '../components/viewPorts/HomeKaomojisExplorer.vue'
 import PageFooter from '../components/PageFooter.vue'
-import { kaomojiStore } from '@/stores/kaomojis';
-
-let kaoStore = kaomojiStore()
-
-kaoStore.loadChunks(1)
-
-window.onscroll = () => {
-    let top = document.documentElement.scrollTop
-    let bottomOfWindow = top + window.innerHeight === document.documentElement.offsetHeight;
-
-    if (bottomOfWindow) {
-        kaoStore.loadChunks(2)
-    }
-};
 
 </script> 
 
@@ -24,7 +10,7 @@ window.onscroll = () => {
     <body class="bg-gray-800 min-h-screen">
         <HomeTopBar></HomeTopBar>
         <ListsSideBar></ListsSideBar>
-        <KaomojisExplorer :kaomojis="kaoStore.kaomojis"></KaomojisExplorer>
+        <HomeKaomojisExplorer></HomeKaomojisExplorer>
         <PageFooter></PageFooter>
     </body>
 </template>

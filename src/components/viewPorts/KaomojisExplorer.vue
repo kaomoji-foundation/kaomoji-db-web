@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { kaomoji } from "@/types/kaomoji";
-import { reactive } from "vue";
-import KaomojiBlob from "./KaomojiBlob.vue";
+import KaomojiBlob from "../KaomojiBlob.vue";
 
 const props = defineProps<{
         kaomojis?: Array<kaomoji>
