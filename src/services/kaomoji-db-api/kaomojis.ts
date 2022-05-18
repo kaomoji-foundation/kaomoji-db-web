@@ -1,4 +1,4 @@
-import type { kaomoji } from "@/types/kaomoji";
+import type { Kaomoji } from "@/types/kaomoji";
 import axios from "./index";
 
 type GetKaomojisRes = {
@@ -9,13 +9,19 @@ type GetKaomojisRes = {
     offset: number;
     limmit: number;
     next: string;
-    kaomojis: Array<kaomoji>;
+    kaomojis: Array<Kaomoji>;
 };
 
 class kaomojiDBSrv {
     async getKaomojis(opts?: {
         chunk?: number;
         chunkSize?: number;
+        query?: string;
+        sorting?: {
+            stringLength?: number;
+            categoriesAmount?: number;
+            categoriesAlphabetic?: number;
+        };
     }): Promise<GetKaomojisRes | undefined> {
         // defauls handeling
         opts = opts || { chunk: 0, chunkSize: 10 };

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { kaomoji } from '@/types/kaomoji';
+import type { Kaomoji } from '@/types/kaomoji';
 
 defineProps<{
-  kaomoji: kaomoji
+  kaomoji: Kaomoji
 }>()
 </script>
 

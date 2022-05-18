@@ -1,10 +1,10 @@
 import kaomojiDBResource from "@/services/kaomoji-db-api/kaomojis";
-import type { kaomoji } from "@/types/kaomoji";
+import type { Kaomoji } from "@/types/kaomoji";
 import { defineStore, type StateTree } from "pinia";
 
 export const kaomojiStore = defineStore("kaomojis", {
     state: () => ({
-        kaomojis: <Array<kaomoji>>[],
+        kaomojis: <Array<Kaomoji>>[],
         loaded: <Array<string>>[],
         first: { chunk: 0, chunkSize: 30 },
         last: { chunk: 0, chunkSize: 30 }, // placeholder

@@ -1,4 +1,3 @@
-import type { kaomoji } from "@/types/kaomoji";
 import axios from "axios";
 
 export default axios.create({

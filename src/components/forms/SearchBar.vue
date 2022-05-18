@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { filtersHomeStore } from "@/stores/filters-home";
+import { reactive, ref, useCssModule } from "vue";
+
+let filters = filtersHomeStore()
+
+</script>
+
 <template>
     <div
         id="search-bar"
@@ -9,7 +17,8 @@
                     type="search"
                     name="q"
                     placeholder="Search..."
-                    autocomplete="off"
+                    autocomplete="on"
+                    v-model.trim="filters.queryString"
                     class="py-2 text-sm w-full text-white bg-gray-800 rounded-md pl-10 focus:outline-none focus:bg-gray-900 focus:text-gray-100"
                 />
                 <span class="absolute inset-y-0 right-0 flex items-center pl-2">

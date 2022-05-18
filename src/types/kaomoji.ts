@@ -1,4 +1,4 @@
-export type kaomoji = {
+export type Kaomoji = {
     id: string;
     string: string;
     description: string;
