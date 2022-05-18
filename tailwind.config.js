@@ -1,5 +1,4 @@
 const fonts = require('./src/components/styles/tw-fonts-component');
-const kaomojiCard = require('./src/components/styles/tw-kaomoji-card-component');
 const categories = require('./src/components/styles/tw-dropdown-component');
 
 module.exports = {
@@ -63,7 +62,6 @@ module.exports = {
     },
     plugins: [
         fonts,
-        kaomojiCard,
         categories
     ],
 }
