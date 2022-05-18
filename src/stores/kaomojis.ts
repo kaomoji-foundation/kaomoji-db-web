@@ -1,22 +1,27 @@
 import kaomojiDBResource from "@/services/kaomoji-db-api/kaomojis";
 import type { Kaomoji } from "@/types/kaomoji";
-import { defineStore, type StateTree } from "pinia";
+import { defineStore } from "pinia";
+import type { GetKaomojisRes } from "../services/kaomoji-db-api/kaomojis";
 
 export const kaomojiStore = defineStore("kaomojis", {
     state: () => ({
         kaomojis: <Array<Kaomoji>>[],
         loaded: <Array<string>>[],
-        first: { chunk: 0, chunkSize: 30 },
-        last: { chunk: 0, chunkSize: 30 }, // placeholder
-        next: { chunk: 0, chunkSize: 30 }, // placeholder
+        first: { chunk: 0, chunkSize: 100 },
+        last: { chunk: 0, chunkSize: 100 }, // placeholder
+        next: { chunk: 0, chunkSize: 100 }, // placeholder
         max: 150,
+        fullyLoaded: false,
     }),
     getters: {},
     actions: {
         async loadNewChunk() {
             // defauls handeling
+            if (this.fullyLoaded) {
+                return null;
+            }
             const res = await kaomojiDBResource.getKaomojis(
-                this.next || { chunk: 0, chunkSize: 30 }
+                this.next || { chunk: 0, chunkSize: 50 }
             );
             if (res) {
                 this.max = res.total;
@@ -28,15 +33,17 @@ export const kaomojiStore = defineStore("kaomojis", {
                 this.kaomojis.push(...res.kaomojis);
                 this.loaded.push(...res.kaomojis.map((s) => s.id));
                 this.last = this.next;
-                const chunkSize = 40;
+                const chunkSize = this.next.chunkSize;
                 const chunk = this.next.chunk + this.last.chunkSize / chunkSize;
                 this.next = { chunk: chunk, chunkSize: chunkSize };
+
+                this.fullyLoaded = res.next == "";
             }
         },
         // a chunk contains 10 entries by default
         async loadChunks(chunks?: number) {
             chunks = chunks || 1;
-            for (let i = 0; i < chunks; i++) {
+            for (let i = 0; i < chunks && !this.fullyLoaded; i++) {
                 await this.loadNewChunk();
             }
         },

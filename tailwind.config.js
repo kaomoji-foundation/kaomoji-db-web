@@ -33,6 +33,7 @@ module.exports = {
             },
             animation: {
                 'blink': 'blink 500ms linear',
+                'spin-2': 'spin 2s linear infinite',
             },
             fontFamily: {
                 NottoSansJP: ['NotoSansJapanese', 'sans-serif', 'NotoSans'],

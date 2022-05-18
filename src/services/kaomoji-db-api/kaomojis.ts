@@ -1,7 +1,7 @@
 import type { Kaomoji } from "@/types/kaomoji";
 import axios from "./index";
 
-type GetKaomojisRes = {
+export type GetKaomojisRes = {
     status: string;
     message: string;
     total: number;
