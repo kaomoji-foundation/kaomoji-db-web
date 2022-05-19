@@ -4,8 +4,14 @@ import type { Notification } from "@/types/notification";
 export const notificationsStore = defineStore({
     id: "notifications",
     state: () =>
-        <{ notifications: Array<Notification> }>{
+        <
+            {
+                notifications: Array<Notification>;
+                lastId: number;
+            }
+        >{
             notifications: [],
+            lastId: 0,
         },
     getters: {
         setup() {
@@ -14,7 +20,20 @@ export const notificationsStore = defineStore({
     },
     actions: {
         // emit a new notification
-        emit(n: Notification) {
+        async emit(n: Notification) {
+            //limit amount of notifications
+            this.lastId++;
+            n.id = this.lastId;
+            if (this.notifications.length >= 4) {
+                let deleted = false;
+                for (let i = 0; i < this.notifications.length && !deleted; i++) {
+                    if (this.notifications[i].dimisable) {
+                        this.notifications.splice(i, 1);
+                        deleted = true;
+                    }
+                }
+            }
+            // defaults
             if (!n.timeout) {
                 n.timeout = 5;
             }
@@ -22,16 +41,16 @@ export const notificationsStore = defineStore({
                 n.dimisable = true;
             }
             this.notifications.push(n);
-            const timeout = async (seconds: number) => {
+            // delete on timeout
+            if (n.timeout !== 0 && n.timeout > 0) {
                 const Second = 1000;
                 setTimeout(() => {
-                    const i = this.notifications.findIndex((notification) => notification === n);
-                    this.notifications.splice(i, 1);
-                }, seconds * Second);
-            };
-            if (n.timeout !== 0 && n.timeout > 0) {
-                timeout(n.timeout);
+                    this.drop(n);
+                }, n.timeout * Second);
             }
+        },
+        drop(notification: Notification) {
+            this.notifications.splice(this.notifications.indexOf(notification), 1);
         },
         clear() {
             this.notifications = [];

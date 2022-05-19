@@ -4,5 +4,6 @@ export type Notification = {
     dimisable?: boolean;
     // time out in seconds
     timeout?: number;
+    id?: number;
 };
 

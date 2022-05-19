@@ -11,8 +11,8 @@ console.log(notifStore.notifications);
 </script>
 <template>
     <div class="w-fit overflow-visible right-0 absolute z-50 flex flex-col justify-start items-end">
-        <!-- eslint-disable-next-line vue/require-v-for-key -->
-        <div v-for="n in notifStore.notifications">
+        <div v-for="n in notifStore.notifications"
+             :key="n.id">
             <BasicAlerts :notification="n"></BasicAlerts>
         </div>
     </div>
