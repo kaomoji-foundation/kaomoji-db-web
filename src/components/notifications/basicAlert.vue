@@ -17,7 +17,8 @@ defineProps<{
         'bg-orange-200': notification.type === 'warn',
         'bg-blue-200': notification.type === 'info',
     }"
-         class="px-6 py-4 mx-2 my-1 rounded-md text-lg flex items-center w-fit">
+         class="px-6 py-4 mx-2 my-1 rounded-md text-xs md:text-lg flex items-center 
+         w-fit max-w-sm text-clip overflow-x-scroll">
         <IconcheckMark class="text-green-600"
                        v-if="notification.type === 'sucess'">
         </IconcheckMark>
@@ -35,7 +36,8 @@ defineProps<{
             'text-red-800': notification.type === 'error',
             'text-yellow-800': notification.type === 'warn',
             'text-blue-800': notification.type === 'info',
-        }">
+        }"
+              class="whitespace-nowrap text-clip overflow-scroll min-w-max">
             {{ notification.msg }}
         </span>
     </div>
