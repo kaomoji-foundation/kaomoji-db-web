@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { notificationsStore } from '@/stores/notifications';
 import type { Kaomoji } from '@/types/kaomoji';
 
 const props = defineProps<{
@@ -7,9 +8,15 @@ const props = defineProps<{
 
 const canCopy = !!navigator.clipboard
 
+let notificator = notificationsStore()
 async function copy() {
-    await navigator.clipboard.writeText(props.kaomoji.string)
-    console.info(`[copied]: ${props.kaomoji.string}`)
+    if (canCopy) {
+        await navigator.clipboard.writeText(props.kaomoji.string)
+        console.info(`[copied]: ${props.kaomoji.string}`)
+        notificator.emit({ msg: `Copied!: ${props.kaomoji.string}`, type: 'sucess' })
+    } else {
+        notificator.emit({ msg: `Could not copy: ${props.kaomoji.string}`, type: 'error' })
+    }
 }
 </script>
 
