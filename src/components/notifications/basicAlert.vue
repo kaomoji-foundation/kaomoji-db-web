@@ -4,19 +4,23 @@ import type { Notification } from "@/types/notification";
 import IconError from "../icons/iconError.vue";
 import IconWarning from "../icons/iconWarning.vue";
 import IconInfo from "../icons/iconInfo.vue";
+import { notificationsStore } from "@/stores/notifications";
 console.log("loading alerts")
 defineProps<{
     notification: Notification
 }>()
 
+let notifications = notificationsStore()
+
 </script>
 <template>
-    <div :class="{
-        'bg-green-200': notification.type === 'sucess',
-        'bg-red-200': notification.type === 'error',
-        'bg-orange-200': notification.type === 'warn',
-        'bg-blue-200': notification.type === 'info',
-    }"
+    <div v-on:click="notifications.drop(notification)"
+         :class="{
+             'bg-green-200': notification.type === 'sucess',
+             'bg-red-200': notification.type === 'error',
+             'bg-orange-200': notification.type === 'warn',
+             'bg-blue-200': notification.type === 'info',
+         }"
          class="px-6 py-4 mx-2 my-1 rounded-md text-xs md:text-lg flex items-center 
          w-fit max-w-sm text-clip overflow-x-scroll">
         <IconcheckMark class="text-green-600"
@@ -40,5 +44,6 @@ defineProps<{
               class="whitespace-nowrap text-clip overflow-scroll min-w-max">
             {{ notification.msg }}
         </span>
+
     </div>
 </template>
