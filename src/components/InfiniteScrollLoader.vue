@@ -1,5 +1,5 @@
 <script setup lang="ts" >
-import { defineProps, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const props = defineProps<{
     loaderFn: () => Promise<boolean>,
@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const emit = defineEmits(['trigger']);
 
-let options: IntersectionObserverInit  = {
+let options: IntersectionObserverInit = {
     root: document.querySelector(props.scrollElementSelector),
     rootMargin: '0px',
     threshold: 1.0,
@@ -25,20 +25,18 @@ let observer = new IntersectionObserver(observerCallback, options);
 let infiniteScrollSpinner = ref(null)
 
 onMounted(() => {
-    if(infiniteScrollSpinner.value){
+    if (infiniteScrollSpinner.value) {
         observer.observe(infiniteScrollSpinner.value);
     }
 })
 </script>
 <template>
-    <div 
-    class="w-auto p-0 m-0 mx-v-center min-h-[10rem] flex
+    <div class="w-auto p-0 m-0 mx-v-center min-h-[10rem] flex
     flex-col items-center justify-center align-middle">
-        <div 
-        v-if="!depleated" 
-        id="infinite-scroll-spinner"
-        ref="infiniteScrollSpinner"
-        class="animate-spin-2 text-slate-50 text-center w-fit h-full h mx-v-center">
+        <div v-if="!depleated"
+             id="infinite-scroll-spinner"
+             ref="infiniteScrollSpinner"
+             class="animate-spin-2 text-slate-50 text-center w-fit h-full h mx-v-center">
             (ノಠ益ಠ)ノ
         </div>
     </div>

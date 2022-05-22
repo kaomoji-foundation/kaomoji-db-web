@@ -27,7 +27,7 @@ export const kaomojiStore = defineStore("kaomojis", {
                     this.next.filter = filters.queryString;
                     this.loadNewChunk();
                 }
-            }, 1200);
+            }, 800);
         },
         async loadNewChunk() {
             // defauls handeling
