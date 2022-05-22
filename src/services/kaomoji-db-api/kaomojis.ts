@@ -16,7 +16,7 @@ class kaomojiDBSrv {
     async getKaomojis(opts?: {
         chunk?: number;
         chunkSize?: number;
-        query?: string;
+        filter?: string;
         sorting?: {
             stringLength?: number;
             categoriesAmount?: number;
@@ -31,10 +31,12 @@ class kaomojiDBSrv {
         const offset: number = opts.chunk * opts.chunkSize;
         const limit: number = offset + opts.chunkSize;
 
+        const query: string = opts.filter || "";
+
         const options = {
             method: "GET",
             url: "/kaomojis/",
-            params: { o: offset, l: limit },
+            params: { o: offset, l: limit, query: query, scopes: "categories" },
         };
 
         let res: GetKaomojisRes | undefined = undefined;

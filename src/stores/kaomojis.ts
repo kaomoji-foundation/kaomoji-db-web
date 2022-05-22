@@ -2,28 +2,42 @@ import kaomojiDBResource from "@/services/kaomoji-db-api/kaomojis";
 import type { Kaomoji } from "@/types/kaomoji";
 import { defineStore } from "pinia";
 import type { GetKaomojisRes } from "../services/kaomoji-db-api/kaomojis";
+import { filtersHomeStore } from "./filters-home";
 
 export const kaomojiStore = defineStore("kaomojis", {
     state: () => ({
         kaomojis: <Array<Kaomoji>>[],
         loaded: <Array<string>>[],
-        first: { chunk: 0, chunkSize: 100 },
-        last: { chunk: 0, chunkSize: 100 }, // placeholder
-        next: { chunk: 0, chunkSize: 100 }, // placeholder
+        // chunk to start with every time the kaomois array is reset
+        startPoint: { chunk: 0, chunkSize: 100, filter: "" },
+        last: { chunk: 0, chunkSize: 100, filter: "" }, // placeholder
+        next: { chunk: 0, chunkSize: 100, filter: "" }, // placeholder
         max: 150,
         fullyLoaded: false,
     }),
     getters: {},
     actions: {
+        async search(filter?: string) {
+            const filters = filtersHomeStore();
+
+            const fil = filter;
+            setTimeout(() => {
+                if (filters.queryString == fil) {
+                    this.$reset();
+                    this.next.filter = filters.queryString;
+                    this.loadNewChunk();
+                }
+            }, 1200);
+        },
         async loadNewChunk() {
             // defauls handeling
             if (this.fullyLoaded) {
                 return null;
             }
-            const res = await kaomojiDBResource.getKaomojis(
-                this.next || { chunk: 0, chunkSize: 50 }
-            );
+
+            const res = await kaomojiDBResource.getKaomojis(this.next);
             if (res) {
+                //TODO: cleanup unecessary checks for the new model of data flow
                 this.max = res.total;
                 if (res.kaomojis.length + this.kaomojis.length >= this.max) {
                     const toAdd = this.max - this.kaomojis.length;
@@ -35,7 +49,8 @@ export const kaomojiStore = defineStore("kaomojis", {
                 this.last = this.next;
                 const chunkSize = this.next.chunkSize;
                 const chunk = this.next.chunk + this.last.chunkSize / chunkSize;
-                this.next = { chunk: chunk, chunkSize: chunkSize };
+
+                this.next = { chunk: chunk, chunkSize: chunkSize, filter: this.next.filter };
 
                 this.fullyLoaded = res.next == "";
             }

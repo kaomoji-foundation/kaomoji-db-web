@@ -1,29 +1,13 @@
 <script setup lang="ts">
 import type { Kaomoji } from "@/types/kaomoji";
 import KaomojiBlob from "../KaomojiBlob.vue";
-import { kaomojiStore } from '@/stores/kaomojis';
-import { reactive } from "vue";
 import InfiniteScrollLoader from "../InfiniteScrollLoader.vue";
 
-const props = defineProps<{
-    scope: string
+defineProps<{
+    kaomojis: Array<Kaomoji>,
+    fillPage: () => Promise<boolean>
 }>()
 
-let kaoStore = kaomojiStore()
-
-let kaomojis: Array<Kaomoji>
-
-let fillPage = async (): Promise<boolean> => {
-    await kaoStore.loadNewChunk()
-    console.debug("[Loading]: startup, filled the page with more kaomojis")
-
-    return kaoStore.fullyLoaded
-}
-if (props.scope == "home") {
-    kaomojis = reactive(kaoStore.kaomojis)
-    //kaoStore.loadChunks(1)
-    //fillPage()
-}
 </script> 
 <template>
     <main class="w-auto p-0 m-0 flex flex-col min-h-screen">
