@@ -14,9 +14,8 @@ if (typeof query == "string") {
 
 <template>
     <div id="search-bar"
-         class="hidden md:flex justify-center w-1/2 bg-gray-800 transition-colors duration-1000">
-        <form method="GET"
-              class="w-full">
+         class="flex justify-center w-1/2 bg-gray-800 transition-colors duration-1000">
+        <form class="w-full">
             <div class="relative text-gray-600 focus-within:text-gray-400">
                 <input type="text"
                        name="q"
