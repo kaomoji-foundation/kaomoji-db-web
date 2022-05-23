@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import SearchBar from '../forms/SearchBar.vue'
 
 const state = reactive({ open: false })
 
