@@ -5,6 +5,12 @@
     "icons": [
         {
             "src": "logo.svg",
+            "sizes": "128x128",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "logo.svg",
+            "sizes": "128x128",
             "type": "image/svg+xml"
         }
     ],
