@@ -5,12 +5,11 @@
     "icons": [
         {
             "src": "logo.svg",
-            "sizes": "192x192",
             "type": "image/svg+xml"
         }
     ],
     "name": "Kaomoji-db",
     "short_name": "kao-db",
-    "start_url": "/"
+    "start_url": "/#"
 }
 
