@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const filtersHomeStore = defineStore({
+export const filtersStore = defineStore({
     id: "filters&sorting-home",
     state: () => ({
         queryString: "",

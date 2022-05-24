@@ -48,14 +48,14 @@ class kaomojiDBSrv {
             return res;
         } catch (error) {
             setTimeout(async () => {
-                res = await kaomojiDBResource.getKaomojis(opts);
+                res = await kaomojiDBService.getKaomojis(opts);
             }, 900);
             return res;
         }
     }
 }
 
-const kaomojiDBResource = new kaomojiDBSrv();
+const kaomojiDBService = new kaomojiDBSrv();
 
-export default kaomojiDBResource;
+export default kaomojiDBService;
 

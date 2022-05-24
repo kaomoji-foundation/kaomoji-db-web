@@ -1,8 +1,7 @@
-import kaomojiDBResource from "@/services/kaomoji-db-api/kaomojis";
+import kaomojiDBService from "@/services/kaomoji-db-api/kaomojis";
 import type { Kaomoji } from "@/types/kaomoji";
 import { defineStore } from "pinia";
-import type { GetKaomojisRes } from "../services/kaomoji-db-api/kaomojis";
-import { filtersHomeStore } from "./filters-home";
+import { filtersStore } from "./filters";
 
 export const kaomojiStore = defineStore("kaomojis", {
     state: () => ({
@@ -18,7 +17,7 @@ export const kaomojiStore = defineStore("kaomojis", {
     getters: {},
     actions: {
         async search(filter?: string) {
-            const filters = filtersHomeStore();
+            const filters = filtersStore();
 
             const fil = filter;
             setTimeout(() => {
@@ -27,7 +26,7 @@ export const kaomojiStore = defineStore("kaomojis", {
                     this.next.filter = filters.queryString;
                     this.loadNewChunk();
                 }
-            }, 800);
+            }, 500);
         },
         async loadNewChunk() {
             // defauls handeling
@@ -35,17 +34,21 @@ export const kaomojiStore = defineStore("kaomojis", {
                 return null;
             }
 
-            const res = await kaomojiDBResource.getKaomojis(this.next);
+            const res = await kaomojiDBService.getKaomojis(this.next);
             if (res) {
-                //TODO: cleanup unecessary checks for the new model of data flow
                 this.max = res.total;
+                /*
+                //* Code meant to work for a persistant storage
+                //* this is not required here by the time going
                 if (res.kaomojis.length + this.kaomojis.length >= this.max) {
                     const toAdd = this.max - this.kaomojis.length;
                     res.kaomojis = res.kaomojis.slice(0, toAdd);
-                }
+                } 
                 res.kaomojis = res.kaomojis.filter((k) => !this.loaded.includes(k.id));
+                */
                 this.kaomojis.push(...res.kaomojis);
                 this.loaded.push(...res.kaomojis.map((s) => s.id));
+                // Preapeare data for newx chunk load
                 this.last = this.next;
                 const chunkSize = this.next.chunkSize;
                 const chunk = this.next.chunk + this.last.chunkSize / chunkSize;

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { filtersHomeStore } from "@/stores/filters-home";
+import { filtersStore } from "@/stores/filters";
 import router from "@/router";
 
 
-let filters = filtersHomeStore()
+let filters = filtersStore()
 
 let query = router.currentRoute.value.params.q
 if (typeof query == "string") {

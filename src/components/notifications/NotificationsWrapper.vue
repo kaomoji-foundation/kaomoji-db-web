@@ -5,9 +5,6 @@ console.log("loading notifications")
 
 let notifStore = notificationsStore()
 
-notifStore.emit({ msg: "Welcome!", type: "sucess" })
-console.log(notifStore.notifications);
-
 </script>
 <template>
     <div class="w-fit max-w-screen-sm overflow-visible right-0 

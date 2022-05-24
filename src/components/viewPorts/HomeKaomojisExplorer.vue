@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { kaomojiStore } from '@/stores/kaomojis';
-import { filtersHomeStore } from "@/stores/filters-home";
+import { filtersStore } from "@/stores/filters";
 import router from "@/router";
 import KaomojiExplorer from "@/components/viewPorts/KaomojiExplorer.vue";
 
@@ -21,7 +21,7 @@ fillPage = async (): Promise<boolean> => {
     return store.fullyLoaded
 }
 
-let filters = filtersHomeStore()
+let filters = filtersStore()
 
 let query = router.currentRoute.value.params.q
 if (typeof query == "string") {
