@@ -11,7 +11,7 @@ let ticking = false;
 
 function onNotTopOfPage(scrollPos: number) {
     if (header.value) {
-        if (scrollPos > 0) {
+        if (scrollPos > 3) {
             header.value.classList.remove("border-transparent");
             header.value.classList.add("border-slate-300");
             console.debug('header added Border');
