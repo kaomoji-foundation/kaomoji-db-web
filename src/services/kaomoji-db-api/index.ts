@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://api.kaomoji-db.com/alpha",
+    baseURL: "https://api.kaomoji-db.com/alpha",
 });
 
