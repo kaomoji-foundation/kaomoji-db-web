@@ -9,13 +9,11 @@ export default defineConfig({
     plugins: [
         vue(),
         VitePWA({
-            injectRegister: "auto",
-            filename: "service-worker.ts",
-            strategies: "injectManifest",
+            injectRegister: null,
             workbox: {
                 sourcemap: true,
-                swDest: "dist/service-worker.js",
             },
+            registerType: "autoUpdate",
             manifest: {
                 background_color: "#3a3a3a",
                 theme_color: "#282828",
@@ -24,26 +22,26 @@ export default defineConfig({
                 icons: [
                     {
                         src: "logo.svg",
-                        sizes: "128x128",
-                        type: "image/svg+xml",
-                    },
-                    {
-                        src: "logo.svg",
-                        sizes: "192x192",
-                        type: "image/svg+xml",
-                    },
-                    {
-                        src: "logo.svg",
                         sizes: "512x512",
                         type: "image/svg+xml",
+                        purpose: "any",
                     },
                     {
-                        src: "/icons/android-chrome-192x192.png",
+                        src: "logo.svg",
+                        sizes: "144x144",
+                        type: "image/svg+xml",
+                        purpose: "maskable",
+                    },
+                    // TODO: Fix lighthouse PWA installable error:
+                    // TODO: "Downloaded icon was empty or corrupted"
+                    // TODO: The above is directly related to the 2 icons down below
+                    {
+                        src: "icons/android-192x192.png",
                         sizes: "192x192",
                         type: "image/png",
                     },
                     {
-                        src: "/icons/android-chrome-512x512.png",
+                        src: "icons/android-512x512.png",
                         sizes: "512x512",
                         type: "image/png",
                     },
