@@ -26,7 +26,7 @@ async function copy() {
    min-w-max min-h-[8.5em] w-fit h-fit bg-gray-900 rounded-2xl font-NottoSansJP text-slate-100
    border-2 hover:border-teal-800 focus:border-teal-800 border-transparent"
        v-on:click="copy()">
-        <span class="min-h-[2em] max-h-fit min-w-max mb-3 mt-6 mx-6 px-4 text-sm
+        <span class="min-h-[2em] max-h-fit min-w-max mb-3 mt-6 mx-auto px-4 text-sm
      md:text-lg xl:text-xl font-NottoSansJP whitespace-nowrap text-clip overflow-scroll">
             {{ kaomoji.string }}
         </span>

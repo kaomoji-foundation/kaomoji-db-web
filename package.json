@@ -5,9 +5,11 @@
         "dev": "vite",
         "dev:host": "vite --host",
         "build": "vue-tsc --noEmit && vite build",
+        "build:docker": "docker build . -t kaomoji-db-web",
         "preview": "vite preview --port 5050",
         "typecheck": "vue-tsc --noEmit",
-        "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+        "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+        "test": "echo 'no tests for now o(╥﹏╥)o'"
     },
     "dependencies": {
         "axios": "^0.27.2",
@@ -33,3 +35,4 @@
         "vue-tsc": "^0.34.7"
     }
 }
+

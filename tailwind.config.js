@@ -35,7 +35,8 @@ module.exports = {
                 'spin-2': 'spin 2s linear infinite',
             },
             fontFamily: {
-                NottoSansJP: ['NotoSansJapanese', 'sans-serif', 'NotoSans'],
+                NottoSansJP: ['NotoSansJapanese', 'NotoSans', 'sans-serif'],
+                NottoSans: ['NotoSans', 'sans-serif'],
             },
             colors: {
                 'gray-1000': '#0c111c'
