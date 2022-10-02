@@ -22,7 +22,7 @@ let notifications = notificationsStore()
              'bg-blue-200': notification.type === 'info',
          }"
          class="px-6 py-4 mx-2 my-1 rounded-md text-xs md:text-lg flex items-center 
-         w-fit max-w-sm text-clip overflow-x-scroll">
+         w-fit max-w-sm text-clip overflow-x-auto">
         <IconcheckMark class="text-green-600"
                        v-if="notification.type === 'sucess'">
         </IconcheckMark>
@@ -41,7 +41,7 @@ let notifications = notificationsStore()
             'text-yellow-800': notification.type === 'warn',
             'text-blue-800': notification.type === 'info',
         }"
-              class="whitespace-nowrap text-clip overflow-scroll min-w-max">
+              class="whitespace-nowrap text-clip overflow-auto min-w-max">
             {{ notification.msg }}
         </span>
 
