@@ -1,6 +1,7 @@
 const fonts = require('./src/components/styles/tw-fonts-component');
 const categories = require('./src/components/styles/tw-dropdown-component');
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
         "./index.html",
