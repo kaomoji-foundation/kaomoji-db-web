@@ -1,5 +1,24 @@
 # kaomoji-db-web
 
+## Feature freeze
+
+As for the on going migration to Nuxt, this repo is under Feature freeze.
+
+### Why nuxt?
+
+Nuxt offers the development experience of VUE with all the bits and bobs that this project uses already implemented and properltly configured.
+Thus reducing the amount of code to maintain.
+
+Nuxt does not implement by default any feature that we will not be using.
+
+Nuxt performs very similar to vanilla VUE (we were definetly not using vanilla vue, we had about the same overhead, if not worse)
+
+Nuxt makes development of new pages easier.
+
+## Development
+<details>
+  <summary>Click to expand!</summary>
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
@@ -44,3 +63,4 @@ npm run build
 ```sh
 npm run lint
 ```
+</details>
